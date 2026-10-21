@@ -59,7 +59,16 @@ class APTests(unittest.TestCase):
                 self.assertEqual(kw['data']['CSRFToken'],'example')
                 c.session.cookies.set('authtok','test')
                 return response('',302)
-            self.assertIn(('write','0'),kw['data'])
+            self.assertEqual(kw['data'], [
+                ('filter', 'js2'),
+                ('cmd', 'show version'),
+                ('cmd', 'show wlan all'),
+                ('cmd', 'show wireless-hal current channel'),
+                ('cmd', 'show wireless-hal statistic'),
+                ('cmd', 'show fqdn'),
+                ('cmd', 'show nebula cloud status'),
+                ('write', '0'),
+            ])
             return response(DATA)
         c._request=Mock(side_effect=request)
         self.assertEqual(c.fetch_status()['device']['model'],'NWA50AX')
