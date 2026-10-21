@@ -12,7 +12,14 @@ import requests
 from .api import ZyxelAuthenticationError, ZyxelConnectionError
 
 # Only commands confirmed against the device UI belong in this list.
-COMMANDS = ("show version",)
+COMMANDS = (
+    "show version",
+    "show wlan all",
+    "show wireless-hal current channel",
+    "show wireless-hal statistic",
+    "show fqdn",
+    "show nebula cloud status",
+)
 MAX_RESPONSE = 2_000_000
 
 
