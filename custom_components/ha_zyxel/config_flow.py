@@ -73,7 +73,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
             # sanitize entry
             if not host.startswith("http://") and not host.startswith("https://"):
-                host = f"https://{host}"
+                scheme = "http" if user_input.get("device_type") == "nwa50ax" else "https"
+                host = f"{scheme}://{host}"
                 user_input[CONF_HOST] = host
 
             try:
@@ -105,3 +106,4 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_show_form(
                 step_id="user", data_schema=DATA_SCHEMA, errors=errors
             )
+
