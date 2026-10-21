@@ -14,11 +14,11 @@ Implemented:
 
 ## Remaining before a full sensor release
 
-`ap_api.COMMANDS` currently contains only `show version`, confirmed in the UI source.
-The exact radio commands from the dashboard request still need to be transcribed and
-verified. Radio parsers are tested against anonymized examples, but radio values will
-NOT be polled until those commands have been added. Do not describe this checkpoint
-as full NWA50AX support.
+The polling commands were verified against the dashboard Network payload on
+2026-10-21: `show version`, `show wlan all`, `show wireless-hal current channel`,
+`show wireless-hal statistic`, `show fqdn`, and `show nebula cloud status`.
+They request device information and radio channel/counters/power/utilization using
+`filter=js2` and `write=0`. Radio parsers use anonymized captured response examples.
 
 Real-device automatic login and Home Assistant setup remain untested. The browser
 session was inspected, but no credentials were exported and no automatic API login
